@@ -1,411 +1,328 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@300;400;500&family=Noto+Serif+Telugu:wght@400;600&display=swap');
-:root {
-  --bg: #FFF8F0;
-  --primary: #7A1F2B;
-  --secondary: #C8A96A;
-  --accent: #D97757;
-  --text: #2C2C2C;
+﻿@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@300;400;500&family=Noto+Serif+Telugu:wght@400;600&display=swap');
 
-  --shadow: rgba(0,0,0,.18);
-  --border: rgba(200,169,106,.35);
+:root {
+  --bg: #fcf5ea;
+  --primary: #7a1f2b;
+  --secondary: #c8a96a;
+  --text: #2f2a24;
+  --border: rgba(128, 92, 43, 0.28);
+  --page-padding: clamp(0.7rem, 1.7vw, 1.2rem);
+  --card-width: min(80vw, 690px);
+  --card-radius: clamp(1.1rem, 2vw, 1.6rem);
+  --shadow: 0 24px 75px rgba(0, 0, 0, 0.14);
+  --seal-size: clamp(4.7rem, 8.2vw, 7rem);
+  --blessing-size: clamp(0.82rem, 1vw + 0.58rem, 1rem);
+  --line-size: clamp(0.58rem, 0.8vw + 0.35rem, 0.74rem);
+  --title-size: clamp(1.95rem, 4vw, 3.25rem);
+  --subtitle-size: clamp(1.2rem, 2.4vw, 2rem);
+  --initial-size: clamp(2.25rem, 4.8vw, 3.8rem);
+  --amp-size: clamp(1.65rem, 3.4vw, 2.6rem);
+  --content-gap: clamp(0.45rem, 1vw, 0.8rem);
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html,
 body,
-#root{
-    width:100%;
-    height:100%;
+#root {
+  width: 100%;
+  min-height: 100%;
 }
 
-body{
-    background:var(--bg);
-    overflow:hidden;
-    font-family:Poppins,sans-serif;
+body {
+  min-height: 100svh;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #fffaf1 0%, var(--bg) 60%, #f6e8d5 100%);
+  font-family: Poppins, sans-serif;
+  color: var(--text);
 }
 
-.landing-page{
-    width:100%;
-    height:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:2vh;
+#root {
+  min-height: 100svh;
 }
 
-.landing-page__stage{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    width:100%;
-    height:100%;
+.landing-page {
+  width: 100%;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: var(--page-padding);
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255, 250, 242, 0.2), rgba(246, 232, 213, 0.3));
 }
 
-.invitation-card{
-
-    width:min(88vw,720px);
-
-    aspect-ratio:3/4.25;
-
-    position:relative;
-
-    background-position:center;
-    background-repeat:no-repeat;
-    background-size: 100% 100%;
-
-    border-radius:24px;
-
-    overflow:hidden;
-
-    box-shadow:
-    0 30px 60px rgba(0,0,0,.18);
-
-    border:1px solid var(--border);
-
+.landing-page__stage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.invitation-card__overlay{
-
-    position:absolute;
-    inset:0;
-
-    background:rgba(255,248,240,.03);
-
+.invitation-card {
+  position: relative;
+  width: min(var(--card-width), calc(100vw - 2 * var(--page-padding)));
+  max-width: calc(100vw - 2 * var(--page-padding));
+  max-height: calc(100svh - 2 * var(--page-padding));
+  aspect-ratio: 3 / 4.25;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  border: 1px solid rgba(128, 92, 43, 0.34);
+  box-shadow: 0 26px 90px rgba(0, 0, 0, 0.16);
+  background-color: #fdf5eb;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  background-clip: padding-box;
+  isolation: isolate;
+  animation: revealCard 0.75s ease both;
 }
 
-.mandala{
-
-    position:absolute;
-
-    left:50%;
-
-    top:50%;
-
-    transform:translate(-50%,-50%);
-
-    width:52%;
-
-    opacity:.045;
-
-    pointer-events:none;
-
-    z-index:1;
-
-}
-.mandala img{
-
-    width:100%;
-    display:block;
-
-    animation:rotateMandala 120s linear infinite;
-
-}
-.invitation-content{
-    position:absolute;
-
-    top:17%;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:74%;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    text-align:center;
-
-    gap:1.4rem;
-
-    z-index:3;
-}
-.invitation-card__blessing{
-
-font-family:'Noto Serif Telugu',serif;
-
-font-size:18px;
-
-color:var(--primary);
-
-margin-bottom:18px;
-
-}
-.invitation-card__initials{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:16px;
-
-    margin-bottom:20px;
-
-}
-.invitation-card__line{
-
-font-family:Poppins,sans-serif;
-
-font-size:13px;
-
-letter-spacing:5px;
-
-text-transform:uppercase;
-
-color:#3b3b3b;
-
-margin:0 0 22px;
-
+.invitation-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 0.75rem solid rgba(255, 250, 242, 0.28);
+  border-radius: var(--card-radius);
+  pointer-events: none;
+  z-index: 3;
 }
 
-.initial{
-
-font-family:'Cinzel',serif;
-
-font-size:clamp(2.8rem,5vw,4.2rem);
-
-color:var(--primary);
-
-line-height:1;
-
+.invitation-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 35%, rgba(122, 31, 43, 0.08) 100%);
+  pointer-events: none;
+  z-index: 2;
 }
 
-.initial--ampersand{
-
-    color:var(--secondary);
-
-    font-size:clamp(2rem,4vw,3.6rem);
-
+.invitation-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.03) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
-.invitation-card__line{
-
-    text-transform:uppercase;
-
-    letter-spacing:.35em;
-
-    font-size:clamp(.7rem,.9vw,.9rem);
-
-    color:var(--text);
-
-    text-align:center;
-
+.mandala {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(56%, 27rem);
+  transform: translate(-50%, -50%);
+  opacity: 0.055;
+  pointer-events: none;
+  z-index: 1;
+  filter: saturate(0.7);
 }
 
-.invitation-card__title{
-
-    font-family:Cinzel,serif;
-
-    color:var(--primary);
-
-   font-size:clamp(2.2rem,4vw,3.5rem);
-
-    letter-spacing:6px;
-
-    line-height:1.1;
-
-    margin:0 0 18px;
-    letter-spacing:.12em;
-
-    text-align:center;
-
-    line-height:1;
-
-}
-.invitation-card__subtitle{
-
-font-family:'Cinzel',serif;
-
-font-size:clamp(1.5rem,2vw,2rem);
-
-letter-spacing:5px;
-
-color:#2C2C2C;
-
-margin:0 0 4.5rem;
-
-}
-.initial--ampersand{
-
-font-size:clamp(2rem,3vw,3rem);
-
-color:var(--secondary);
-
-padding-inline:8px;
-
+.mandala img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform-origin: center;
+  animation: rotateMandala 100s linear infinite;
 }
 
-.invitation-card__subtitle{
-
-    font-family:Cinzel,serif;
-
-    color:var(--text);
-
-    font-size:clamp(1.4rem,3vw,2.5rem);
-
-    letter-spacing:.12em;
-
+.invitation-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 2.6vw, 1.7rem) clamp(1rem, 3vw, 1.8rem) clamp(4.8rem, 9.5vw, 5.8rem);
+  text-align: center;
+  gap: var(--content-gap);
+  z-index: 4;
 }
 
-.wax-seal{
-
-    position:absolute;
-
-    left:50%;
-
-    bottom:5.5%;
-
-    transform:translateX(-50%);
-
-    width:132px;
-
-    aspect-ratio:1;
-
-    border-radius:50%;
-
-    background:
-    radial-gradient(circle at 30% 25%,
-    #c96d62,
-    #7A1F2B 55%,
-    #4e0d18);
-
-    border:3px solid rgba(200,169,106,.7);
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    color:white;
-
-    z-index:5;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-    box-shadow:
-    0 28px 48px rgba(0,0,0,0.16),
-    inset 0 6px 16px rgba(255,255,255,0.12);
-
+.invitation-card__blessing {
+  font-family: 'Noto Serif Telugu', serif;
+  font-size: var(--blessing-size);
+  color: var(--primary);
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  margin-bottom: 0;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
 }
 
-.wax-seal:hover{
-
-    transform:
-    translateX(-50%)
-    scale(1.08);
-
-    box-shadow:
-    0 32px 54px rgba(0,0,0,0.2),
-    inset 0 6px 16px rgba(255,255,255,0.12);
-
+.invitation-card__initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.8rem, 1.8vw, 1.25rem);
+  margin-block: clamp(0.05rem, 0.2vw, 0.2rem);
+  width: 100%;
 }
 
-.wax-seal__label{
-
-    font-family:Cinzel;
-
-    font-size:2rem;
-
+.initial {
+  font-family: 'Cinzel', serif;
+  font-size: var(--initial-size);
+  color: var(--primary);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.08em;
 }
 
-.wax-seal__action{
-
-    font-size:.7rem;
-
-    letter-spacing:.2em;
-
+.initial--ampersand {
+  color: var(--secondary);
+  font-size: var(--amp-size);
+  transform: translateY(-0.06em);
 }
 
-@keyframes rotateMandala{
-
-from{
-
-transform:rotate(0deg);
-
+.invitation-card__line {
+  font-family: Poppins, sans-serif;
+  font-size: var(--line-size);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: #4d4a45;
+  line-height: 1.7;
+  margin-top: clamp(0.05rem, 0.3vw, 0.15rem);
+  text-align: center;
+  width: 100%;
 }
 
-to{
-
-transform:rotate(360deg);
-
+.invitation-card__title {
+  font-family: 'Cinzel', serif;
+  font-size: var(--title-size);
+  letter-spacing: 0.16em;
+  color: var(--primary);
+  line-height: 1;
+  font-weight: 600;
+  margin-top: 0;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+  text-align: center;
+  width: 100%;
 }
 
+.invitation-card__subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: var(--subtitle-size);
+  letter-spacing: 0.14em;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
 }
 
-@media (max-width:768px){
-
-.invitation-card{
-
-width:min(95vw,430px);
-
+.wax-seal {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(0.9rem, 1.8vw, 1.25rem);
+  transform: translateX(-50%);
+  width: var(--seal-size);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 0.16rem solid rgba(200, 169, 106, 0.88);
+  background: radial-gradient(circle at 30% 25%, #ebb08b 0%, #d06776 35%, #a42333 62%, #5a0712 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  z-index: 10;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18), inset 0 7px 14px rgba(255,255,255,0.16);
+  appearance: none;
+  padding: 0;
 }
 
-.initial{
-
-font-size:3.2rem;
-
+.wax-seal::before {
+  content: "";
+  position: absolute;
+  inset: 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
-.invitation-card__title{
-
-font-size:2.5rem;
-
+.wax-seal:hover {
+  transform: translateX(-50%) scale(1.03);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.22), inset 0 8px 16px rgba(255,255,255,0.2);
 }
 
-.invitation-card__subtitle{
-
-font-size:1.5rem;
-
+.wax-seal__label {
+  font-family: Cinzel, serif;
+  font-size: clamp(1.45rem, 2.7vw, 1.9rem);
+  line-height: 1;
+  position: relative;
+  z-index: 1;
 }
 
-.wax-seal{
-
-width:90px;
-
+.wax-seal__action {
+  font-size: clamp(0.62rem, 0.8vw + 0.22rem, 0.72rem);
+  letter-spacing: 0.22em;
+  line-height: 1.2;
+  margin-top: 0.15rem;
+  position: relative;
+  z-index: 1;
 }
 
+@keyframes revealCard {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-@media (max-height:700px){
-
-.invitation-card{
-
-height:92vh;
-
-width:auto;
-
-aspect-ratio:3/4.25;
-
+@keyframes rotateMandala {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
+@media (max-width: 700px) {
+  .invitation-content {
+    padding-bottom: clamp(5rem, 12vw, 6.2rem);
+  }
+
+  .invitation-card__line {
+    font-size: clamp(0.56rem, 1.2vw + 0.42rem, 0.7rem);
+    letter-spacing: 0.28em;
+  }
+
+  .invitation-card__blessing {
+    font-size: clamp(0.72rem, 1.2vw + 0.5rem, 0.86rem);
+  }
+
+  .invitation-card__title {
+    font-size: clamp(1.7rem, 4.8vw, 2.5rem);
+  }
+
+  .invitation-card__subtitle {
+    font-size: clamp(1.1rem, 2.8vw, 1.55rem);
+  }
 }
-.invitation-card__initials{
 
-margin-bottom:18px;
+@media (max-width: 560px) {
+  .invitation-content {
+    width: min(86%, 28rem);
+    gap: clamp(0.5rem, 1.3vw, 0.8rem);
+  }
 
-}
+  .invitation-card::before {
+    border-width: 0.5rem;
+  }
 
-.invitation-card__line{
-
-margin-bottom:20px;
-
-}
-
-.invitation-card__title{
-
-margin-bottom:10px;
-
+  .wax-seal {
+    bottom: clamp(0.7rem, 2vw, 0.95rem);
+    width: clamp(4.3rem, 16vw, 5.3rem);
+  }
 }

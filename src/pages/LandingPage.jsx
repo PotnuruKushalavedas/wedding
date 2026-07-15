@@ -39,7 +39,7 @@ function InvitationContent() {
       </p>
 
       <h1 className="invitation-card__title">
-        ENGAGEMENT
+        MARRIAGE 
       </h1>
 
       <h2 className="invitation-card__subtitle">
@@ -49,17 +49,13 @@ function InvitationContent() {
   );
 }
 
-function WaxSeal({ onOpen }) {
+function WaxSeal() {
   const [opening, setOpening] = useState(false);
 
   const handleClick = () => {
     if (opening) return;
 
     setOpening(true);
-
-    setTimeout(() => {
-      onOpen?.();
-    }, 1500);
   };
 
   return (
@@ -94,11 +90,6 @@ function LandingPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleOpen = () => {
-    console.log("Invitation Opened");
-    // Navigate to Invitation Page later
-  };
-
   return (
     <main
       className={`landing-page ${
@@ -117,14 +108,10 @@ function LandingPage() {
           <Mandala visible={showMandala} />
 
           <div className="invitation-content">
-            <div className="temple-symbols" aria-hidden="true">
-              <span className="temple-symbol" />
-              <span className="temple-symbol" />
-            </div>
             <InvitationContent />
           </div>
 
-          <WaxSeal onOpen={handleOpen} />
+          <WaxSeal />
         </article>
       </section>
     </main>
