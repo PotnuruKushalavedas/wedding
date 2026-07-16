@@ -12,40 +12,49 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Montserrat', sans-serif;
   background: var(--charcoal);
   color: var(--primary-text);
 }
 
 .invitation-portal {
-  min-height: 100vh;
+  width: 100%;
+  min-height: 100svh;
   display: grid;
   place-items: center;
-  padding: 2rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
   background: linear-gradient(135deg, #171717, #0b0b0b);
 }
 
 .invitation-portal__card {
-  width: min(680px, 100%);
-  min-height: 70vh;
+  width: min(92vw, 680px);
+  min-height: min(70vh, 72rem);
   border: 1px solid rgba(214, 180, 106, 0.35);
   background: radial-gradient(circle at top, rgba(255, 251, 245, 0.95), rgba(248, 243, 234, 0.92));
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
-  padding: 3rem 2rem;
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2rem);
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1.4rem;
+  gap: clamp(1rem, 2vw, 1.4rem);
 }
 
 .invitation-portal__eyebrow {
-  letter-spacing: 0.38rem;
+  letter-spacing: 0.2rem;
   text-transform: uppercase;
   color: var(--antique-gold);
   font-size: 0.8rem;
+  font-family: 'Playfair Display', serif;
 }
 
 .invitation-portal h1 {
@@ -54,12 +63,20 @@ body {
   letter-spacing: 0.2rem;
   color: var(--antique-gold);
   font-weight: 600;
+  font-family: 'Cinzel', serif;
 }
 
 .invitation-portal__body {
   margin: 0 auto;
-  max-width: 34rem;
-  font-size: 1.1rem;
+  max-width: min(90vw, 34rem);
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
   line-height: 1.7;
   color: var(--primary-text);
+  font-family: 'Montserrat', sans-serif;
+}
+
+@media (max-width: 480px) {
+  .invitation-portal__body {
+    font-size: clamp(0.92rem, 3.5vw, 1rem);
+  }
 }
