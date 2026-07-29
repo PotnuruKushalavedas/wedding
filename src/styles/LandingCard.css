@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --bg: #fcf5ea;
   --primary: #7a1f2b;
   --secondary: #c8a96a;
@@ -422,3 +422,34 @@ body {
     width: clamp(3rem, 16vw, 3.6rem);
   }
 }
+
+/* Transition animations for opening the invitation */
+.landing-page {
+  transition: opacity 1.5s ease-in-out, filter 1.5s ease-in-out;
+}
+
+.landing-page--opening {
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+.invitation-card {
+  transition: transform 1.5s ease-in-out, box-shadow 1.5s ease-in-out, opacity 1.5s ease-in-out;
+}
+
+.invitation-card--opening {
+  transform: scale(0.94);
+  box-shadow: 0 0 80px rgba(200, 169, 106, 0.75), 0 26px 90px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+}
+
+.wax-seal {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 1.5s ease-in-out;
+}
+
+.wax-seal--opening {
+  transform: translateX(-50%) translateY(0.05rem) scale(0.88) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), inset 0 2px 5px rgba(0, 0, 0, 0.3) !important;
+  opacity: 0;
+}
+

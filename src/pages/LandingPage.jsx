@@ -49,21 +49,13 @@ function InvitationContent() {
   );
 }
 
-function WaxSeal() {
-  const [opening, setOpening] = useState(false);
-
-  const handleClick = () => {
-    if (opening) return;
-
-    setOpening(true);
-  };
-
+function WaxSeal({ onClick, opening }) {
   return (
     <button
       className={`wax-seal ${
         opening ? "wax-seal--opening" : ""
       }`}
-      onClick={handleClick}
+      onClick={onClick}
       aria-label="Open Invitation"
     >
       <span className="wax-seal__label">
@@ -77,9 +69,10 @@ function WaxSeal() {
   );
 }
 
-function LandingPage() {
+function LandingPage({ onOpen }) {
   const [loaded, setLoaded] = useState(false);
   const [showMandala, setShowMandala] = useState(false);
+  const [opening, setOpening] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -90,15 +83,27 @@ function LandingPage() {
     return () => clearTimeout(timer);
   }, []);
 
+  const handleOpenClick = () => {
+    if (opening) return;
+    setOpening(true);
+    setTimeout(() => {
+      if (onOpen) onOpen();
+    }, 1500); // 1.5 second luxury transition
+  };
+
   return (
     <main
       className={`landing-page ${
         loaded ? "landing-page--loaded" : ""
+      } ${
+        opening ? "landing-page--opening" : ""
       }`}
     >
       <section className="landing-page__stage">
         <article
-          className="invitation-card"
+          className={`invitation-card ${
+            opening ? "invitation-card--opening" : ""
+          }`}
           style={{
             backgroundImage: `url(${landingBackground})`,
           }}
@@ -111,7 +116,7 @@ function LandingPage() {
             <InvitationContent />
           </div>
 
-          <WaxSeal />
+          <WaxSeal onClick={handleOpenClick} opening={opening} />
         </article>
       </section>
     </main>
