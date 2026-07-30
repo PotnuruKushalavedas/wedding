@@ -19,6 +19,7 @@ import '../styles/InvitationPage.css';
 
 // Assets
 import heroBg from '../assets/hero_couple.png';
+import heroCouple1 from '../assets/hero_couple1 .png';
 import galleryBride from '../assets/gallery_bride.png';
 import galleryGroom from '../assets/gallery_groom.png';
 import galleryHenna from '../assets/gallery_henna.png';
@@ -46,7 +47,7 @@ const GaneshaIcon = () => (
 const GoldDivider = () => (
   <div className="gold-divider-container" aria-hidden="true">
     <span className="gold-divider-line"></span>
-    <span className="gold-divider-diamond">♦</span>
+    <span className="gold-divider-diamond">🤍</span>
     <span className="gold-divider-line"></span>
   </div>
 );
@@ -76,6 +77,18 @@ const SubtleCorner = ({ position }) => (
   </svg>
 );
 
+const LotusDivider = () => (
+  <div className="lotus-divider-container" aria-hidden="true">
+    <span className="lotus-divider-line"></span>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="lotus-svg">
+      <path d="M12 4C10 9 6 12 6 15C6 18.3 8.7 20 12 20C15.3 20 18 18.3 18 15C18 12 14 9 12 4Z" stroke="#C8A96A" strokeWidth="1.2" />
+      <path d="M12 7C11 11 9 13 9 16C9 17.7 10.3 19 12 19C13.7 19 15 17.7 15 16C15 13 13 11 12 7Z" stroke="#C8A96A" strokeWidth="1" />
+      <path d="M12 11C12.5 13.5 13.5 15 13.5 16C13.5 16.8 12.8 17.5 12 17.5C11.2 17.5 10.5 16.8 10.5 16C10.5 15 11.5 13.5 12 11Z" fill="#C8A96A" />
+    </svg>
+    <span className="lotus-divider-line"></span>
+  </div>
+);
+
 // Floating Particles Effect
 const FloatingParticles = () => {
   const [particles, setParticles] = useState([]);
@@ -88,7 +101,7 @@ const FloatingParticles = () => {
       size: Math.random() * 8 + 4, // size in px
       delay: Math.random() * 8, // animation delay
       duration: Math.random() * 15 + 15, // float duration
-      type: Math.random() > 0.5 ? 'petal' : 'gold', // type of particle
+      type: Math.random() > 0.5 ? 'heart' : 'gold', // type of particle
     }));
     setParticles(particleList);
   }, []);
@@ -428,6 +441,19 @@ function InvitationPage() {
               <GaneshaIcon />
             </div>
 
+            <div className="muhurtam-couple-photo-container">
+              <img src={heroCouple1} alt="Abhiram and Vishnupriya" className="muhurtam-couple-photo" />
+            </div>
+
+            <LotusDivider />
+
+            <div className="muhurtam-quote-section">
+              <p className="muhurtam-quote-text">
+                "Love does not begin when two people meet.<br />
+                Sometimes it quietly grows while the world is watching."
+              </p>
+            </div>
+
             <h3 className="telugu-main-heading">శుభ ముహూర్తము</h3>
             
             <GoldDivider />
@@ -447,38 +473,6 @@ function InvitationPage() {
                 మీ కుటుంబ సమేతంగా విచ్చేసి<br />
                 వధూవరులను ఆశీర్వదించగలరు.
               </p>
-            </div>
-
-            <GoldDivider />
-
-            {/* Information Cards Grid */}
-            <div className="muhurtam-details-grid">
-              <div className="muhurtam-detail-item">
-                <div className="muhurtam-detail-icon-circle">
-                  <FaCalendarAlt />
-                </div>
-                <h5>DATE</h5>
-                <p>Friday</p>
-                <p className="bold-detail">Feb 27, 2026</p>
-              </div>
-
-              <div className="muhurtam-detail-item">
-                <div className="muhurtam-detail-icon-circle">
-                  <FaClock />
-                </div>
-                <h5>MUHURTAM</h5>
-                <p>Morning</p>
-                <p className="bold-detail">7:45 AM</p>
-              </div>
-
-              <div className="muhurtam-detail-item">
-                <div className="muhurtam-detail-icon-circle">
-                  <FaMapMarkerAlt />
-                </div>
-                <h5>VENUE</h5>
-                <p>Varun Beach</p>
-                <p className="bold-detail">Visakhapatnam</p>
-              </div>
             </div>
 
             {/* Bottom Gold Divider */}
@@ -593,22 +587,6 @@ function InvitationPage() {
         </div>
 
         <div className="venue-split-layout">
-          {/* Left: Venue Image Card */}
-          <motion.div 
-            className="venue-image-card"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-          >
-            <img 
-              src={landingBg} 
-              alt="Novotel Varun Beach Visakhapatnam" 
-              loading="lazy" 
-              className="venue-img"
-            />
-            <div className="venue-img-overlay-gold" />
-          </motion.div>
 
           {/* Right: Venue Information Card */}
           <motion.div 

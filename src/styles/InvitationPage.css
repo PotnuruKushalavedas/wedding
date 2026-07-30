@@ -619,18 +619,95 @@ button:focus, input:focus, select:focus, textarea:focus {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .ganesha-svg path, .ganesha-svg stroke {
   stroke: var(--secondary);
 }
 
+/* Circular Framed Couple Photograph */
+.muhurtam-couple-photo-container {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  margin: 0.5rem auto 1.25rem;
+  padding: 8px;
+  background-color: var(--bg); /* Soft ivory outer ring (#FFF8F0) */
+  border: 2px solid rgba(200, 169, 106, 0.65); /* Thin champagne gold border */
+ box-shadow:
+0 20px 45px rgba(0,0,0,.08),
+0 0 30px rgba(200,169,106,.20);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  z-index: 5;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.muhurtam-couple-photo-container:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.06), 0 0 20px rgba(200, 169, 106, 0.18);
+}
+
+.muhurtam-couple-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+ border:3px solid rgba(200,169,106,0.55);/* Inner thin gold border */
+}
+
+/* Lotus Divider Separating Image and Text */
+.lotus-divider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.25rem auto;
+  width: 100%;
+  max-width: 180px;
+  opacity: 0.9;
+}
+
+.lotus-divider-line {
+  flex-grow: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+}
+
+.lotus-svg {
+  color: var(--secondary);
+  filter: drop-shadow(0 0 2px rgba(200, 169, 106, 0.25));
+}
+
+/* Quote Section */
+.muhurtam-quote-section {
+  margin: 1.25rem auto 1.75rem;
+  max-width: 500px;
+  padding-inline: 1rem;
+}
+
+.muhurtam-quote-text {
+  font-family: var(--font-serif-sub);
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--primary); /* Deep Maroon #7A1F2B */
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+  margin: 0;
+  text-align: center;
+}
+
 .telugu-main-heading {
   font-family: var(--font-telugu);
   font-size: clamp(2rem, 3.8vw, 2.8rem);
   color: var(--primary);
-  margin-block: 0.5rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
   font-weight: 600;
   letter-spacing: 0.05em;
 }
@@ -638,7 +715,8 @@ button:focus, input:focus, select:focus, textarea:focus {
 .telugu-text-block {
   font-family: var(--font-telugu);
   color: var(--text);
-  margin-block: 2rem;
+  margin-top: 1.75rem;
+  margin-bottom: 2.25rem;
   line-height: 2.1;
   padding-inline: 1rem;
 }
@@ -677,74 +755,11 @@ button:focus, input:focus, select:focus, textarea:focus {
   margin-top: 1rem;
 }
 
-/* Muhurtam Details Grid */
-.muhurtam-details-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 2.5rem;
-  padding-top: 1rem;
-}
-
-.muhurtam-detail-item {
-  background-color: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(200, 169, 106, 0.25);
-  border-radius: 16px;
-  padding: 1.5rem 1rem;
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.muhurtam-detail-item:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-gold);
-  border-color: rgba(200, 169, 106, 0.45);
-}
-
-.muhurtam-detail-icon-circle {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: var(--primary);
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.95rem;
-  margin-bottom: 0.9rem;
-}
-
-.muhurtam-detail-item h5 {
-  font-family: var(--font-headings);
-  font-size: 0.74rem;
-  color: var(--secondary);
-  letter-spacing: 0.2em;
-  margin: 0 0 0.5rem;
-  font-weight: 600;
-}
-
-.muhurtam-detail-item p {
-  margin: 0;
-  font-size: 0.8rem;
-  color: var(--text-light);
-  line-height: 1.5;
-}
-
-.muhurtam-detail-item .bold-detail {
-  font-weight: 600;
-  color: var(--primary);
-  font-size: 0.9rem;
-  margin-top: 0.25rem;
-}
-
 /* Bottom Gold Divider for Muhurtam Section */
 .muhurtam-bottom-divider {
   margin-top: 2.5rem;
-  margin-bottom: 0;
-  opacity: 0.8;
+  margin-bottom: 0.5rem;
+  opacity: 0.85;
 }
 
 /* ==========================================================================
@@ -1184,200 +1199,6 @@ button:focus, input:focus, select:focus, textarea:focus {
   font-size: 0.9rem;
 }
 
-/* ==========================================================================
-   SECTION 7: RSVP FORM
-   ========================================================================== */
-
-.rsvp-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-block: 5rem;
-}
-
-.rsvp-container-card {
-  background-color: var(--white);
-  border: 1px solid rgba(200, 169, 106, 0.3);
-  border-radius: 28px;
-  box-shadow: var(--shadow-luxury);
-  width: min(94vw, 800px);
-  padding: clamp(2rem, 5vw, 4.5rem) clamp(1.5rem, 4vw, 3.5rem);
-  position: relative;
-  text-align: center;
-}
-
-.rsvp-card-decor {
-  color: var(--secondary);
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.rsvp-heading {
-  font-family: var(--font-headings);
-  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
-  color: var(--primary);
-  margin: 0 0 0.5rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.rsvp-subheading {
-  font-family: var(--font-serif-sub);
-  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
-  color: var(--text-light);
-  font-style: italic;
-  margin: 0;
-}
-
-.rsvp-form {
-  margin-top: 2.5rem;
-  text-align: left;
-}
-
-.form-group-row {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.form-input-container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.form-input-container label {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--text-light);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.form-input-container input[type="text"],
-.form-input-container input[type="tel"],
-.form-input-container select,
-.form-input-container textarea {
-  background-color: var(--bg);
-  border: 1px solid rgba(200, 169, 106, 0.28);
-  border-radius: 12px;
-  padding: 0.9rem 1.1rem;
-  font-family: var(--font-body);
-  font-size: 0.86rem;
-  color: var(--text);
-  transition: all 0.3s ease;
-}
-
-.form-input-container input:hover,
-.form-input-container select:hover,
-.form-input-container textarea:hover {
-  border-color: var(--secondary);
-}
-
-.form-input-container input:focus,
-.form-input-container select:focus,
-.form-input-container textarea:focus {
-  border-color: var(--primary);
-  background-color: var(--white);
-  box-shadow: 0 0 0 3px rgba(122, 31, 43, 0.08);
-}
-
-.rsvp-radio-options {
-  display: flex;
-  gap: 1.5rem;
-  padding-block: 0.4rem;
-}
-
-.rsvp-radio-label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-  font-size: 0.86rem;
-  font-weight: 500;
-  color: var(--text);
-}
-
-.rsvp-radio-label input[type="radio"] {
-  accent-color: var(--primary);
-  width: 16px;
-  height: 16px;
-}
-
-.rsvp-submit-btn {
-  width: 100%;
-  padding: 1.1rem;
-  border-radius: 12px;
-  background-color: var(--primary);
-  color: var(--white);
-  border: 1px solid var(--primary);
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: 0 6px 20px rgba(122, 31, 43, 0.25);
-  transition: all 0.3s ease;
-  margin-top: 1rem;
-}
-
-.rsvp-submit-btn:hover {
-  background-color: var(--secondary);
-  border-color: var(--secondary);
-  box-shadow: 0 6px 20px rgba(200, 169, 106, 0.4);
-  transform: translateY(-2px);
-}
-
-.rsvp-submit-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* RSVP Success State */
-.rsvp-success-view {
-  padding: 2rem 1rem;
-}
-
-.success-icon-anim {
-  font-size: 3.5rem;
-  color: var(--secondary);
-  margin-bottom: 1.25rem;
-  animation: scalePop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes scalePop {
-  0% { transform: scale(0.5); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-.rsvp-success-view h3 {
-  font-family: var(--font-headings);
-  font-size: 1.8rem;
-  color: var(--primary);
-  margin: 0 0 1rem;
-  letter-spacing: 0.05em;
-}
-
-.success-thank-msg {
-  font-family: var(--font-serif-sub);
-  font-size: 1.25rem;
-  color: var(--text-light);
-  font-style: italic;
-  margin-bottom: 1.5rem;
-}
-
-.success-action-msg {
-  font-size: 0.88rem;
-  line-height: 1.7;
-  color: var(--text);
-  max-width: 480px;
-  margin: 0 auto;
-}
 
 /* ==========================================================================
    SECTION 8: BLESSINGS
@@ -1662,28 +1483,19 @@ button:focus, input:focus, select:focus, textarea:focus {
     padding: 2.25rem 1rem 1.75rem;
   }
 
-  .muhurtam-details-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    max-width: 320px;
-    margin: 2rem auto 0;
+  .muhurtam-couple-photo-container {
+    width: 120px;
+    height: 120px;
+    padding: 5px;
+    margin-bottom: 1rem;
   }
 
-  .muhurtam-detail-item {
-    padding: 1.1rem;
-    flex-direction: row;
-    align-items: center;
-    gap: 1.25rem;
-    text-align: left;
+  .muhurtam-quote-section {
+    margin: 1rem auto 1.5rem;
   }
 
-  .muhurtam-detail-icon-circle {
-    margin-bottom: 0;
-    flex-shrink: 0;
-  }
-
-  .muhurtam-detail-item h5 {
-    margin-bottom: 0.2rem;
+  .muhurtam-quote-text {
+    font-size: 1.1rem;
   }
 
   /* Celebrations Timeline: Convert to single column */
