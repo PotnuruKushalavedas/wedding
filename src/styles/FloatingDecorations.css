@@ -1,0 +1,75 @@
+﻿.floating-decorations {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+  --floating-scroll: 0px;
+}
+
+.floating-petal-system,
+.floating-petal-layer,
+.floating-heart-system,
+.floating-dust-system,
+.floating-sparkle-system { position: absolute; inset: 0; }
+
+.floating-petal-layer--back { z-index: 0; filter: blur(1.4px); opacity: .5; }
+.floating-petal-layer--front { z-index: 3; opacity: .82; }
+.floating-petal {
+  position: absolute;
+  top: -12vh;
+  left: var(--petal-left);
+  display: block;
+  width: var(--petal-size);
+  height: var(--petal-height);
+  color: var(--petal-color);
+  opacity: var(--petal-opacity);
+  transform: translate3d(0, -12vh, 0) rotate(var(--petal-rotate));
+  animation: floatingPetalFall var(--petal-duration) var(--petal-delay) cubic-bezier(.22, .61, .36, 1) infinite;
+  will-change: transform, opacity;
+}
+.floating-petal__shape { display: block; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 2px 4px rgba(96, 43, 42, .1)); }
+.floating-petal__shape path { fill: currentColor; }
+.floating-petal--1 { --petal-left: 3%; --petal-size: 17px; --petal-height: 26px; --petal-color: #f6b8c8; --petal-opacity: .65; --petal-duration: 15s; --petal-delay: -8s; --petal-rotate: 14deg; --petal-drift: 12vw; --petal-spin: 300deg; }
+.floating-petal--2 { --petal-left: 9%; --petal-size: 11px; --petal-height: 18px; --petal-color: #fff9f2; --petal-opacity: .72; --petal-duration: 20s; --petal-delay: -4s; --petal-rotate: -28deg; --petal-drift: -10vw; --petal-spin: -260deg; }
+.floating-petal--3 { --petal-left: 17%; --petal-size: 14px; --petal-height: 22px; --petal-color: #f8e8d0; --petal-opacity: .6; --petal-duration: 17s; --petal-delay: -12s; --petal-rotate: 46deg; --petal-drift: 16vw; --petal-spin: 420deg; }
+.floating-petal--4 { --petal-left: 25%; --petal-size: 9px; --petal-height: 15px; --petal-color: #ffd7c2; --petal-opacity: .7; --petal-duration: 22s; --petal-delay: -6s; --petal-rotate: -16deg; --petal-drift: -14vw; --petal-spin: -340deg; }
+.floating-petal--5 { --petal-left: 33%; --petal-size: 19px; --petal-height: 29px; --petal-color: #d9b96e; --petal-opacity: .42; --petal-duration: 18s; --petal-delay: -14s; --petal-rotate: 8deg; --petal-drift: 10vw; --petal-spin: 280deg; }
+.floating-petal--6 { --petal-left: 41%; --petal-size: 12px; --petal-height: 19px; --petal-color: #f6b8c8; --petal-opacity: .58; --petal-duration: 24s; --petal-delay: -2s; --petal-rotate: 34deg; --petal-drift: -18vw; --petal-spin: -420deg; }
+.floating-petal--7 { --petal-left: 49%; --petal-size: 15px; --petal-height: 23px; --petal-color: #fff9f2; --petal-opacity: .65; --petal-duration: 16s; --petal-delay: -10s; --petal-rotate: -42deg; --petal-drift: 14vw; --petal-spin: 360deg; }
+.floating-petal--8 { --petal-left: 57%; --petal-size: 10px; --petal-height: 16px; --petal-color: #c84d5e; --petal-opacity: .38; --petal-duration: 21s; --petal-delay: -16s; --petal-rotate: 20deg; --petal-drift: -11vw; --petal-spin: -300deg; }
+.floating-petal--9 { --petal-left: 65%; --petal-size: 18px; --petal-height: 27px; --petal-color: #f8e8d0; --petal-opacity: .62; --petal-duration: 19s; --petal-delay: -7s; --petal-rotate: -8deg; --petal-drift: 19vw; --petal-spin: 460deg; }
+.floating-petal--10 { --petal-left: 73%; --petal-size: 12px; --petal-height: 20px; --petal-color: #ffd7c2; --petal-opacity: .68; --petal-duration: 23s; --petal-delay: -13s; --petal-rotate: 52deg; --petal-drift: -15vw; --petal-spin: -380deg; }
+.floating-petal--11 { --petal-left: 81%; --petal-size: 16px; --petal-height: 24px; --petal-color: #d9b96e; --petal-opacity: .4; --petal-duration: 18s; --petal-delay: -1s; --petal-rotate: -34deg; --petal-drift: 13vw; --petal-spin: 340deg; }
+.floating-petal--12 { --petal-left: 88%; --petal-size: 10px; --petal-height: 16px; --petal-color: #f6b8c8; --petal-opacity: .62; --petal-duration: 25s; --petal-delay: -9s; --petal-rotate: 12deg; --petal-drift: -20vw; --petal-spin: -500deg; }
+.floating-petal--13 { --petal-left: 94%; --petal-size: 14px; --petal-height: 22px; --petal-color: #fff9f2; --petal-opacity: .7; --petal-duration: 17s; --petal-delay: -5s; --petal-rotate: -55deg; --petal-drift: 11vw; --petal-spin: 320deg; }
+.floating-petal--14 { --petal-left: 52%; --petal-size: 20px; --petal-height: 31px; --petal-color: #c84d5e; --petal-opacity: .28; --petal-duration: 27s; --petal-delay: -18s; --petal-rotate: 28deg; --petal-drift: -17vw; --petal-spin: -460deg; }
+
+@keyframes floatingPetalFall {
+  0% { opacity: 0; transform: translate3d(0, -12vh, 0) rotate(var(--petal-rotate)) scale(.75); }
+  10% { opacity: var(--petal-opacity); }
+  42% { transform: translate3d(calc(var(--petal-drift) * .35), 40vh, 0) rotate(calc(var(--petal-spin) * .35)) scale(1); }
+  68% { transform: translate3d(calc(var(--petal-drift) * -.18), 68vh, 0) rotate(calc(var(--petal-spin) * .7)) scale(.92); }
+  82% { transform: translate3d(calc(var(--petal-drift) * .55), 77vh, 0) rotate(calc(var(--petal-spin) * .82)) scale(1.04); }
+  100% { opacity: 0; transform: translate3d(var(--petal-drift), 116vh, 0) rotate(var(--petal-spin)) scale(.86); }
+}
+
+.floating-heart { position: absolute; width: 10px; height: 10px; fill: none; stroke: #d9b96e; stroke-width: 1.1; opacity: 0; animation: floatingHeartRise 10s ease-in-out infinite; }
+.floating-heart--1 { left: 22%; top: 70%; animation-delay: -2s; stroke: #e7b5bb; }
+.floating-heart--2 { left: 68%; top: 58%; animation-delay: -6s; stroke: #d9b96e; }
+.floating-heart--3 { left: 84%; top: 80%; animation-delay: -9s; stroke: #f6b8c8; }
+@keyframes floatingHeartRise { 0%, 100% { opacity: 0; transform: translate3d(0, 14vh, 0) rotate(-12deg) scale(.7); } 18%, 72% { opacity: .42; } 50% { transform: translate3d(2vw, -8vh, 0) rotate(12deg) scale(1); } }
+
+.floating-dust { position: absolute; left: var(--dust-left); top: var(--dust-top); width: var(--dust-size); height: var(--dust-size); border-radius: 50%; background: #d9b96e; opacity: .18; box-shadow: 0 0 8px rgba(217, 185, 110, .45); animation: floatingDust 7s ease-in-out var(--dust-delay) infinite alternate; }
+.floating-dust--1 { --dust-left: 8%; --dust-top: 20%; --dust-size: 3px; --dust-delay: -1s; } .floating-dust--2 { --dust-left: 18%; --dust-top: 43%; --dust-size: 2px; --dust-delay: -4s; } .floating-dust--3 { --dust-left: 31%; --dust-top: 16%; --dust-size: 4px; --dust-delay: -6s; } .floating-dust--4 { --dust-left: 44%; --dust-top: 74%; --dust-size: 2px; --dust-delay: -2s; } .floating-dust--5 { --dust-left: 56%; --dust-top: 28%; --dust-size: 3px; --dust-delay: -5s; } .floating-dust--6 { --dust-left: 63%; --dust-top: 62%; --dust-size: 2px; --dust-delay: -3s; } .floating-dust--7 { --dust-left: 75%; --dust-top: 18%; --dust-size: 3px; --dust-delay: -7s; } .floating-dust--8 { --dust-left: 87%; --dust-top: 48%; --dust-size: 2px; --dust-delay: -4s; } .floating-dust--9 { --dust-left: 92%; --dust-top: 78%; --dust-size: 4px; --dust-delay: -6s; } .floating-dust--10 { --dust-left: 37%; --dust-top: 88%; --dust-size: 2px; --dust-delay: -2s; }
+@keyframes floatingDust { 0% { opacity: .08; transform: translate3d(0, 0, 0) scale(.8); } 50% { opacity: .28; } 100% { opacity: .1; transform: translate3d(12px, -18px, 0) scale(1.2); } }
+
+.floating-sparkle { position: absolute; left: var(--sparkle-left); top: var(--sparkle-top); width: 17px; height: 17px; opacity: 0; animation: floatingSparkle 8s ease-in-out var(--sparkle-delay) infinite; }
+.floating-sparkle i { position: absolute; left: 50%; top: 0; width: 1px; height: 100%; background: #e7ca8d; transform: translateX(-50%) scaleY(.6); box-shadow: 0 0 7px #d9b96e; } .floating-sparkle i:last-child { transform: translateX(-50%) rotate(90deg) scaleY(.6); }
+.floating-sparkle--1 { --sparkle-left: 20%; --sparkle-top: 22%; --sparkle-delay: -1s; } .floating-sparkle--2 { --sparkle-left: 78%; --sparkle-top: 28%; --sparkle-delay: -5s; } .floating-sparkle--3 { --sparkle-left: 42%; --sparkle-top: 55%; --sparkle-delay: -7s; } .floating-sparkle--4 { --sparkle-left: 88%; --sparkle-top: 67%; --sparkle-delay: -3s; } .floating-sparkle--5 { --sparkle-left: 12%; --sparkle-top: 78%; --sparkle-delay: -9s; } .floating-sparkle--6 { --sparkle-left: 61%; --sparkle-top: 12%; --sparkle-delay: -4s; } .floating-sparkle--7 { --sparkle-left: 51%; --sparkle-top: 84%; --sparkle-delay: -6s; }
+@keyframes floatingSparkle { 0%, 100% { opacity: 0; transform: scale(.5) rotate(0); } 25%, 65% { opacity: .35; } 50% { transform: scale(1) rotate(45deg); } }
+
+html.floating-animations-paused .floating-decorations * { animation-play-state: paused !important; }
+@media (max-width: 900px) { .floating-petal-layer--front .floating-petal:nth-child(n+36), .floating-petal-layer--back .floating-petal:nth-child(n+36) { display: none; } }
+@media (max-width: 600px) { .floating-petal-layer--front .floating-petal:nth-child(n+19), .floating-petal-layer--back .floating-petal:nth-child(n+19) { display: none; } .floating-petal-layer--front { opacity: .68; } .floating-petal-layer--back { opacity: .38; } }
+@media (prefers-reduced-motion: reduce) { .floating-decorations { display: none; } }

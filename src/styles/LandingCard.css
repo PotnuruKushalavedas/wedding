@@ -4,18 +4,17 @@
   --secondary: #c8a96a;
   --text: #2f2a24;
   --border: rgba(128, 92, 43, 0.28);
-  --page-padding: clamp(0.7rem, 1.7vw, 1.2rem);
-  --card-width: min(80vw, 690px);
-  --card-radius: clamp(1.1rem, 2vw, 1.6rem);
-  --shadow: 0 24px 75px rgba(0, 0, 0, 0.14);
-  --seal-size: clamp(4.7rem, 8.2vw, 7rem);
-  --blessing-size: clamp(0.82rem, 1vw + 0.58rem, 1rem);
-  --line-size: clamp(0.58rem, 0.8vw + 0.35rem, 0.74rem);
-  --title-size: clamp(1.95rem, 4vw, 3.25rem);
-  --subtitle-size: clamp(1.2rem, 2.4vw, 2rem);
-  --initial-size: clamp(2.25rem, 4.8vw, 3.8rem);
-  --amp-size: clamp(1.65rem, 3.4vw, 2.6rem);
-  --content-gap: clamp(0.45rem, 1vw, 0.8rem);
+  --page-padding: clamp(0.5rem, 1.5vw, 1rem);
+  --card-width: min(82vw, 700px);
+  --card-radius: clamp(1rem, 2vw, 1.6rem);
+
+  /* vmin scales with the smaller viewport dimension — perfect for portrait cards */
+  --blessing-size: clamp(0.85rem, 2.4vmin, 1.1rem);
+  --line-size: clamp(0.6rem, 1.7vmin, 0.8rem);
+  --title-size: clamp(2.1rem, 7.5vmin, 3.6rem);
+  --subtitle-size: clamp(1.25rem, 4.2vmin, 2.2rem);
+  --initial-size: clamp(2.5rem, 9.5vmin, 4.2rem);
+  --amp-size: clamp(1.8rem, 6.5vmin, 2.9rem);
 }
 
 * {
@@ -53,6 +52,12 @@ body {
   padding: var(--page-padding);
   overflow-x: hidden;
   background: linear-gradient(135deg, rgba(255, 250, 242, 0.2), rgba(246, 232, 213, 0.3));
+  transition: opacity 1.5s ease-in-out, filter 1.5s ease-in-out;
+}
+
+.landing-page--opening {
+  filter: blur(12px);
+  pointer-events: none;
 }
 
 .landing-page__stage {
@@ -79,6 +84,13 @@ body {
   background-clip: padding-box;
   isolation: isolate;
   animation: revealCard 0.75s ease both;
+  transition: transform 1.5s ease-in-out, box-shadow 1.5s ease-in-out, opacity 1.5s ease-in-out;
+}
+
+.invitation-card--opening {
+  transform: scale(0.94);
+  box-shadow: 0 0 80px rgba(200, 169, 106, 0.75), 0 26px 90px rgba(0, 0, 0, 0.2);
+  opacity: 0;
 }
 
 .invitation-card::before {
@@ -129,16 +141,22 @@ body {
   animation: rotateMandala 100s linear infinite;
 }
 
+/* 
+  KEY FIX: 
+  - Use space-evenly so every text element spreads across the full card height
+  - Padding-top ~18% leaves space for the decorative top border art in the card image
+  - Padding-bottom ~22% leaves space for the wax seal at bottom 11.5%
+  - No gap — space-evenly handles spacing automatically
+*/
 .invitation-content {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: clamp(2rem, 4.5vw, 3.2rem) clamp(1rem, 3vw, 1.8rem) clamp(2.2rem, 5vw, 3rem);
+  justify-content: space-evenly;
+  padding: 24% clamp(0.8rem, 5%, 2rem) 22%;
   text-align: center;
-  gap: var(--content-gap);
   z-index: 4;
 }
 
@@ -147,9 +165,7 @@ body {
   font-size: var(--blessing-size);
   color: var(--primary);
   letter-spacing: 0.08em;
-  line-height: 1.55;
-  margin-bottom: 0;
-  text-transform: uppercase;
+  line-height: 1.5;
   text-align: center;
   width: 100%;
 }
@@ -158,8 +174,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.8rem, 1.8vw, 1.25rem);
-  margin-block: clamp(0.05rem, 0.2vw, 0.2rem);
+  gap: clamp(0.8rem, 3vmin, 1.5rem);
   width: 100%;
 }
 
@@ -182,11 +197,10 @@ body {
 .invitation-card__line {
   font-family: 'Montserrat', sans-serif;
   font-size: var(--line-size);
-  letter-spacing: clamp(0.22em, 0.3vw, 0.30em);
+  letter-spacing: clamp(0.18em, 0.5vmin, 0.3em);
   text-transform: uppercase;
   color: #4d4a45;
-  line-height: 1.7;
-  margin-top: clamp(0.05rem, 0.3vw, 0.15rem);
+  line-height: 1.6;
   text-align: center;
   width: 100%;
 }
@@ -198,7 +212,6 @@ body {
   color: var(--primary);
   line-height: 1;
   font-weight: 450;
-  margin-top: 0;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
   text-align: center;
   width: 100%;
@@ -209,19 +222,19 @@ body {
   font-size: var(--subtitle-size);
   letter-spacing: 0.12em;
   color: #333;
-  margin-top: 0;
-  margin-bottom: 0;
   font-weight: 500;
   text-align: center;
   width: 100%;
 }
 
+/* Wax Seal — percentage-based bottom so it stays in the same visual spot on all screens */
 .wax-seal {
   position: absolute;
   left: 50%;
-  bottom: clamp(0.95rem, 1.8vw, 1.25rem);
+  bottom: 11.5%;
   transform: translateX(-50%) translateY(0.05rem);
-  width: clamp(3.2rem, 8vw, 4.2rem);
+  /* vmin-based size ensures it scales proportionally with the card */
+  width: clamp(3.5rem, 10vmin, 5rem);
   aspect-ratio: 1;
   border-radius: 50%;
   border: 0.08rem solid rgba(255, 255, 255, 0.18);
@@ -234,11 +247,11 @@ body {
   align-items: center;
   color: #fff;
   cursor: pointer;
-  transition: transform 0.24s ease, box-shadow 0.24s ease;
   z-index: 10;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18), inset 0 5px 14px rgba(255,255,255,0.12);
   appearance: none;
   padding: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 1.5s ease-in-out;
 }
 
 .wax-seal::before {
@@ -252,13 +265,19 @@ body {
 }
 
 .wax-seal:hover {
-  transform: translateX(-50%) translateY(0.05rem) scale(1.02);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22), inset 0 6px 14px rgba(255,255,255,0.16);
+  transform: translateX(-50%) translateY(0.05rem) scale(1.06);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.25), inset 0 6px 16px rgba(255,255,255,0.18);
+}
+
+.wax-seal--opening {
+  transform: translateX(-50%) translateY(0.05rem) scale(0.88) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), inset 0 2px 5px rgba(0, 0, 0, 0.3) !important;
+  opacity: 0;
 }
 
 .wax-seal__label {
   font-family: 'Cinzel Decorative', cursive;
-  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  font-size: clamp(1rem, 3.8vmin, 1.7rem);
   line-height: 1;
   position: relative;
   z-index: 1;
@@ -266,7 +285,7 @@ body {
 
 .wax-seal__action {
   font-family: 'Great Vibes', cursive;
-  font-size: clamp(0.58rem, 0.72vw + 0.18rem, 0.66rem);
+  font-size: clamp(0.55rem, 1.6vmin, 0.72rem);
   letter-spacing: 0.08em;
   line-height: 1.2;
   margin-top: 0.12rem;
@@ -286,170 +305,69 @@ body {
 }
 
 @keyframes rotateMandala {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
-@media (max-width: 1400px) {
-  .invitation-content {
-    padding: clamp(1.8rem, 4vw, 3rem) clamp(1rem, 3vw, 1.8rem) clamp(2rem, 6vw, 3rem);
-  }
-}
 
-@media (max-width: 1200px) {
-  .invitation-card {
-    width: min(92vw, 640px);
-  }
-}
-
-@media (max-width: 1024px) {
-  .invitation-card {
-    width: min(92vw, 600px);
-  }
-
-  .invitation-card__title {
-    font-size: clamp(1.8rem, 4.4vw, 2.8rem);
-  }
-}
-
-@media (max-width: 900px) {
-  .invitation-card {
-    width: min(94vw, 560px);
-  }
-}
-
-@media (max-width: 768px) {
-  .invitation-card {
-    width: min(96vw, 520px);
-  }
-
-  .invitation-content {
-    padding: clamp(1.6rem, 4vw, 2.5rem) clamp(1rem, 3vw, 1.6rem) clamp(1.8rem, 5vw, 2.4rem);
-  }
-
-  .invitation-card__blessing {
-    font-size: clamp(0.76rem, 1.15vw + 0.5rem, 0.88rem);
-  }
-}
-
-@media (max-width: 600px) {
-  .invitation-card {
-    width: min(97vw, 480px);
-  }
-
-  .invitation-content {
-    padding: clamp(1.3rem, 4vw, 2rem) clamp(0.9rem, 3vw, 1.4rem) clamp(1.6rem, 5vw, 2rem);
-  }
-
-  .invitation-card__line {
-    font-size: clamp(0.52rem, 1.2vw + 0.42rem, 0.68rem);
-    letter-spacing: clamp(0.18em, 0.3vw, 0.26em);
-  }
-
-  .wax-seal {
-    width: clamp(3.7rem, 15vw, 4.4rem);
-    bottom: clamp(0.75rem, 2vw, 0.95rem);
-  }
-}
-
+/* Opening card identity */
+.invitation-card__wordmark { display: flex; align-items: baseline; justify-content: center; gap: .08em; color: var(--primary); line-height: .9; }
+.wordmark-primary, .wordmark-secondary { font: 500 clamp(3rem, 10vmin, 5.6rem)/.82 'Cormorant Garamond', serif; letter-spacing: -.07em; }
+.wordmark-primary { font-style: italic; }
+.wordmark-secondary { font-weight: 400; }
+.wordmark-amp { color: var(--secondary); font: 400 clamp(1.5rem, 4.5vmin, 2.8rem)/1 'Great Vibes', cursive; transform: translateY(-.14em); }
+.invitation-card__title { font: 500 clamp(1.4rem, 4.8vmin, 2.5rem)/1 'Cormorant Garamond', serif; letter-spacing: .08em; text-transform: none; }
+.invitation-card__and { margin: -.35rem 0; color: var(--secondary); font: italic clamp(.85rem, 2.4vmin, 1.1rem) 'Great Vibes', cursive; }
+.invitation-card__subtitle { font: 500 clamp(1.1rem, 3.8vmin, 2rem)/1 'Cormorant Garamond', serif; letter-spacing: .04em; text-transform: none; }
+.invitation-card__date { color: var(--primary); font: 600 clamp(.62rem, 1.7vmin, .8rem) Montserrat, sans-serif; letter-spacing: .28em; }
+.invitation-card__line { color: #7f604f; letter-spacing: .22em; }
+.wax-seal { background-image: radial-gradient(circle at 38% 28%, rgba(255,255,255,.48) 0%, rgba(255,255,255,.08) 18%, transparent 34%), radial-gradient(circle at 50% 45%, #e2b38e 0%, #b54b5b 42%, #7a1f2b 75%, #420914 100%); }
 @media (max-width: 480px) {
-  .invitation-card {
-    width: min(98vw, 420px);
-  }
-
-  .invitation-content {
-    gap: clamp(0.4rem, 1.2vw, 0.7rem);
-    padding: clamp(1.1rem, 4vw, 1.8rem) clamp(0.8rem, 3vw, 1.2rem) clamp(1.4rem, 5vw, 1.8rem);
-  }
-
-  .invitation-card__title {
-    font-size: clamp(1.55rem, 5vw, 2.2rem);
-  }
-
-  .invitation-card__subtitle {
-    font-size: clamp(1rem, 3vw, 1.35rem);
-  }
+  .invitation-content { padding-top: 22%; padding-bottom: 20%; }
+  .invitation-card__blessing { font-size: .72rem; }
+  .invitation-card__line { letter-spacing: .14em; }
 }
 
-@media (max-width: 430px) {
-  .invitation-card {
-    width: min(98vw, 390px);
-  }
 
-  .invitation-card__initials {
-    gap: clamp(0.4rem, 1.2vw, 0.85rem);
-  }
-
-  .wax-seal {
-    width: clamp(3.4rem, 15vw, 4rem);
-  }
+/* Reference-led cover composition */
+.invitation-card { background-color: #fdf8f1; }
+.invitation-card__overlay { background: radial-gradient(circle at 50% 34%, rgba(255,255,255,.96) 0%, rgba(255,251,245,.83) 42%, rgba(231,211,190,.32) 100%); }
+.invitation-content { justify-content: center; gap: clamp(1.05rem, 3.2vmin, 1.75rem); padding: 18% clamp(1.2rem, 7%, 3rem) 26%; }
+.invitation-card__monogram { display: flex; align-items: baseline; justify-content: center; color: #731932; line-height: .85; text-shadow: 0 1px 12px rgba(255,255,255,.9); }
+.invitation-card__monogram span { font: 400 clamp(3.9rem, 13vmin, 7rem)/.82 'Cormorant Garamond', serif; letter-spacing: -.09em; }
+.invitation-card__monogram span:first-child { color: #8c243c; font-style: italic; }
+.invitation-card__monogram span:last-child { color: #6a152d; }
+.invitation-card__monogram i { margin: 0 .06em; color: #bf9652; font: 400 clamp(2.6rem, 8vmin, 4.5rem)/1 'Great Vibes', cursive; transform: translateY(.05em); }
+.invitation-card__blessing { width: auto; color: #7b2338; font: italic 500 clamp(.88rem, 2.3vmin, 1.06rem)/1.45 'Cormorant Garamond', serif; letter-spacing: .07em; }
+.invitation-card__ornament { color: #bd9657; font-size: .55rem; opacity: .85; }
+.invitation-card__line { max-width: 32ch; color: #705d54; font: 500 clamp(.58rem, 1.6vmin, .78rem)/1.8 Montserrat, sans-serif; letter-spacing: clamp(.19em, .5vmin, .31em); text-transform: uppercase; }
+.invitation-card__occasion { display: grid; gap: .25rem; color: #68162d; }
+.invitation-card__occasion h1, .invitation-card__occasion h2 { width: auto; margin: 0; color: inherit; font: 500 clamp(2.3rem, 7.2vmin, 4.15rem)/.98 'Cinzel', serif; letter-spacing: .14em; text-transform: uppercase; }
+.invitation-card__occasion h2 { padding-left: .14em; font-size: clamp(1.8rem, 5.4vmin, 3.1rem); letter-spacing: .19em; }
+.wax-seal { bottom: 9.5%; }
+@media (max-width: 480px) {
+  .invitation-content { padding-top: 18%; padding-bottom: 23%; gap: 1rem; }
+  .invitation-card__line { max-width: 29ch; letter-spacing: .15em; }
+  .invitation-card__occasion h1 { font-size: 2.15rem; }
+  .invitation-card__occasion h2 { font-size: 1.65rem; }
 }
 
-@media (max-width: 390px) {
-  .invitation-card__line {
-    font-size: clamp(0.48rem, 1.2vw + 0.4rem, 0.64rem);
-  }
 
-  .invitation-card__title {
-    font-size: clamp(1.45rem, 5.2vw, 2rem);
-  }
-}
+/* Preserve the floral invitation-art layout shown in the reference */
+.invitation-content { justify-content: space-evenly; gap: 0; padding: 24% clamp(.8rem, 5%, 2rem) 22%; }
+.invitation-card__initials { display: flex; align-items: center; justify-content: center; gap: clamp(.8rem, 3vmin, 1.5rem); width: 100%; }
+.initial { font-family: 'Cinzel Decorative', cursive; font-size: var(--initial-size); color: #7a1f2b; line-height: 1; font-weight: 400; letter-spacing: .02em; }
+.initial--ampersand { font-family: 'Great Vibes', cursive; color: #c8a96a; font-size: var(--amp-size); transform: translateY(-.06em); }
+.invitation-card__line { max-width: none; color: #4d4a45; font-family: Montserrat, sans-serif; font-size: var(--line-size); letter-spacing: clamp(.18em, .5vmin, .3em); line-height: 1.6; }
+.invitation-card__title { color: #7a1f2b; font-family: Cinzel, serif; font-size: var(--title-size); letter-spacing: .13em; line-height: 1; font-weight: 450; text-transform: uppercase; }
+.invitation-card__subtitle { color: #333; font-family: Cinzel, serif; font-size: var(--subtitle-size); letter-spacing: .12em; line-height: 1; font-weight: 500; text-transform: uppercase; }
+@media (max-width: 480px) { .invitation-content { padding-top: 24%; padding-bottom: 22%; } }
 
-@media (max-width: 375px) {
-  .invitation-card__subtitle {
-    font-size: clamp(0.95rem, 3.4vw, 1.2rem);
-  }
 
-  .wax-seal__label {
-    font-size: clamp(1rem, 2.2vw, 1.35rem);
-  }
-}
-
-@media (max-width: 320px) {
-  .invitation-card {
-    width: min(98vw, 340px);
-  }
-
-  .invitation-content {
-    padding: clamp(1rem, 4vw, 1.6rem) clamp(0.7rem, 3vw, 1rem) clamp(1.2rem, 5vw, 1.6rem);
-  }
-
-  .wax-seal {
-    width: clamp(3rem, 16vw, 3.6rem);
-  }
-}
-
-/* Transition animations for opening the invitation */
-.landing-page {
-  transition: opacity 1.5s ease-in-out, filter 1.5s ease-in-out;
-}
-
-.landing-page--opening {
-  filter: blur(12px);
-  pointer-events: none;
-}
-
-.invitation-card {
-  transition: transform 1.5s ease-in-out, box-shadow 1.5s ease-in-out, opacity 1.5s ease-in-out;
-}
-
-.invitation-card--opening {
-  transform: scale(0.94);
-  box-shadow: 0 0 80px rgba(200, 169, 106, 0.75), 0 26px 90px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-}
-
-.wax-seal {
-  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 1.5s ease-in-out;
-}
-
-.wax-seal--opening {
-  transform: translateX(-50%) translateY(0.05rem) scale(0.88) !important;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), inset 0 2px 5px rgba(0, 0, 0, 0.3) !important;
-  opacity: 0;
-}
-
+/* Restore the original invitation artwork and its vertical rhythm */
+.invitation-card__overlay { background: linear-gradient(180deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.03) 100%); }
+.invitation-content { justify-content: space-evenly; gap: 0; padding: 24% clamp(.8rem, 5%, 2rem) 22%; }
+.invitation-card__blessing { display: block; width: 100%; color: #7a1f2b; font-family: 'Noto Serif Telugu', 'Playfair Display', serif; font-size: var(--blessing-size); font-style: normal; letter-spacing: .08em; line-height: 1.5; }
+.invitation-card__initials { margin: 0; }
+.invitation-card__line { margin: 0; }
+.invitation-card__title, .invitation-card__subtitle { margin: 0; }

@@ -17,34 +17,15 @@ function Mandala({ visible }) {
 function InvitationContent() {
   return (
     <>
-      <p className="invitation-card__blessing">
-        ఓం నమో వెంకటేశాయ
-      </p>
-
-      <div
-        className="invitation-card__initials"
-        aria-label="Bride and Groom Initials"
-      >
+      <p className="invitation-card__blessing">{'ఓం నమో వెంకటేశాయ'}</p>
+      <div className="invitation-card__initials" aria-label="V and A">
         <span className="initial">V</span>
-
-        <span className="initial initial--ampersand">
-          &
-        </span>
-
+        <span className="initial initial--ampersand">&amp;</span>
         <span className="initial">A</span>
       </div>
-
-      <p className="invitation-card__line">
-        YOU ARE CORDIALLY INVITED TO THE
-      </p>
-
-      <h1 className="invitation-card__title">
-        MARRIAGE 
-      </h1>
-
-      <h2 className="invitation-card__subtitle">
-        CEREMONY
-      </h2>
+      <p className="invitation-card__line">You are cordially invited to the</p>
+      <h1 className="invitation-card__title">Wedding</h1>
+      <h2 className="invitation-card__subtitle">Celebration</h2>
     </>
   );
 }
@@ -52,9 +33,8 @@ function InvitationContent() {
 function WaxSeal({ onClick, opening }) {
   return (
     <button
-      className={`wax-seal ${
-        opening ? "wax-seal--opening" : ""
-      }`}
+      className={`wax-seal ${opening ? "wax-seal--opening" : ""
+        }`}
       onClick={onClick}
       aria-label="Open Invitation"
     >
@@ -86,24 +66,19 @@ function LandingPage({ onOpen }) {
   const handleOpenClick = () => {
     if (opening) return;
     setOpening(true);
-    setTimeout(() => {
-      if (onOpen) onOpen();
-    }, 1500); // 1.5 second luxury transition
+    if (onOpen) onOpen();
   };
 
   return (
     <main
-      className={`landing-page ${
-        loaded ? "landing-page--loaded" : ""
-      } ${
-        opening ? "landing-page--opening" : ""
-      }`}
+      className={`landing-page ${loaded ? "landing-page--loaded" : ""
+        } ${opening ? "landing-page--opening" : ""
+        }`}
     >
       <section className="landing-page__stage">
         <article
-          className={`invitation-card ${
-            opening ? "invitation-card--opening" : ""
-          }`}
+          className={`invitation-card ${opening ? "invitation-card--opening" : ""
+            }`}
           style={{
             backgroundImage: `url(${landingBackground})`,
           }}
